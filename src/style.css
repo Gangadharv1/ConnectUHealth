@@ -1,0 +1,492 @@
+/* Import Montserrat font globally */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Times New Roman', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 1.6;
+    background: black;  
+    color: #fff;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    background: rgba(3, 75, 127, 0.1);
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    z-index: 1000; 
+}
+
+.logo img {
+    max-width: 250px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #0a6bbb;
+}
+
+main {
+    flex: 1; 
+}
+
+#hero {
+    position: relative;
+    overflow: hidden;
+    height: 500px; 
+    background-image: url('/images/banner.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center; 
+    text-align: center; 
+    color: #fff; 
+}
+
+.hero-content {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+#hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.animated-text {
+    opacity: 0; 
+    transform: translateY(20px); 
+    animation: fadeInUp 2s forwards; 
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.box-container {
+    display: flex; 
+    justify-content: center;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+}
+
+.box {
+    background: rgba(5, 5, 5, 0.3); 
+    border-radius: 8px; 
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
+    margin: 0 10px; 
+    padding: 20px; 
+    width: 300px; 
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+
+.box img {
+    max-width: 100%; 
+    height: 50px;
+    border-radius: 5px; 
+}
+
+.box:hover {
+    transform: scale(1.05);
+    background: rgba(2, 49, 69, 0.3); 
+}  
+
+.content-section {
+    position: relative;
+    overflow: hidden;
+    height: auto; 
+    background: linear-gradient(360deg, #000000, #102e66e5); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    margin: 15px 0; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+}
+
+.content-section h2 {
+    margin-bottom: 10px; 
+}
+
+.content-section p {
+    line-height: 1.5; 
+}
+
+#departments {
+    display: flex;
+    width: 100%; 
+    height: auto;   
+    background-image: url('/images/poster.jpg');
+    background-color: rgba(250, 250, 250, 0.1); 
+    border-radius: 8px; 
+    transition: transform 0.3s ease;
+}
+
+.department-info {
+    padding: 10px; 
+    border-radius: 8px; 
+    margin-right: 40px; 
+    color: #fff; 
+    flex: 1; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.department-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    flex: 2; 
+}
+
+.department-box {
+    background-color: rgba(250, 250, 250, 0.1); 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    text-align: center; 
+    padding: 10px; 
+    width: 150px; 
+    height: 150px; 
+    transition: background-color 0.3s, transform 0.2s; 
+    margin: 0 auto; 
+    cursor: pointer;
+}
+
+.department-box img {
+    max-width: 80%; 
+    height: auto; 
+    border-radius: 8px; 
+}
+
+.department-box p {
+    margin-top: 5px; 
+    font-weight: bold; 
+    color: #fff;
+    line-height: 1.2;
+}
+
+.department-box:hover {
+    transform: scale(1.05); 
+}
+
+#about-us {
+    border-radius: 5px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    padding: 40px; 
+    margin: 20px 0; 
+    text-align: center; 
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+#about-us {
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 20px 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    max-height: 0; 
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out; 
+  }
+  
+  #about-us.visible {
+    max-height: 500px; 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  #about-us.hidden {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  #about-us h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  #about-us p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.profile-card {
+    background-color: rgba(250, 250, 250, 0.1); 
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+}
+
+.doctor-photo {
+    width: 100px; 
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.doctor-name {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.specialty {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.appointment-button {
+    background-color: rgba(250, 250, 250, 0.1); 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    height: 40px; 
+    width: 200px;
+}
+
+.appointment-button:hover {
+    background-color: #051208;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-container span {
+    margin: 0px 10px;
+}
+
+.dropdown {     
+    width: 400px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown:last-child {
+    margin-right: 0;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(360deg, #000000, #102e66e5); 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    color: #fff;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Calendar Styles */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.calendar-day {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.selected {
+    background-color: #0a6bbb;
+    color: white;
+}
+
+/* Time Slots Styles */
+#slot-container {
+    padding: 10px;
+}
+
+#slot-container h3 {
+    margin-bottom: 10px;
+}
+
+#time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.time-slot {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time-slot:hover {
+    background-color: #1565bbb7;
+}
+
+.time-slot.selected {
+    background-color: #270abb7e;
+    color: white;
+}
+
+/* Form Styles */
+#patient-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#next-btn, 
+#patient-form button {
+    background-color: #0a6bbb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#next-btn:hover, 
+#patient-form button:hover {
+    background-color: #084d8e;
+}
+
+#next-btn:disabled {
+    background-color: #3159bc;
+    cursor: not-allowed;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background: black;
+    color: #fff;
+}
