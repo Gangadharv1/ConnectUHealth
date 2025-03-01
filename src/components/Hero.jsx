@@ -9,12 +9,14 @@ function Hero() {
         <div className="box-container">
           <Link to="/request-appointment" className="box request-appointment-link">
             <img src="/images/request_appointment.png" alt="Request Appointment" 
-            onError={() => console.log("Failed to load request_appointment.png")}/>
+            onError={() => console.log("Failed to load request_appointment.png")} 
+            />
             <p>Request Appointment</p>
           </Link>
           <Link to="/#find-doctors" className="box">
             <img src="/images/find_doctor.png" alt="Find Doctor" 
-            onError={() => console.log("Failed to load find_doctor.png")}/>
+            onError={() => console.log("Failed to load find_doctor.png")}
+            />
             <p>Find Doctor</p>
           </Link>
         </div>

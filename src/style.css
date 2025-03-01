@@ -62,7 +62,8 @@ nav ul li a:hover {
 }
 
 main {
-    flex: 1; 
+    flex: 1;
+    margin: 0;
 }
 
 #hero {
@@ -71,7 +72,7 @@ main {
     position: relative;
     overflow: hidden;
     height: 100vh; 
-    width: 100vw; 
+    width: 100vw;
     background-image: url('/images/banner.jpg'); 
     background-size: cover; 
     background-position: center; 
@@ -81,7 +82,6 @@ main {
     align-items: center; 
     text-align: center; 
     color: #fff; 
-   
 }
 
 .hero-content {
@@ -370,6 +370,7 @@ select {
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
+    background-image: url('/images/poster.jpg');
 }
 
 .modal-content {
