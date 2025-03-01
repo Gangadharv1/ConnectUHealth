@@ -17,8 +17,11 @@ function DoctorProfiles({ selectedDepartment, showAll }) {
   const filteredDoctors = showAll ? doctors : doctors.filter(doc => doc.id === selectedDepartment);
 
   const handleBookAppointment = (doctorName, specialty) => {
-    navigate(`/request-appointment?doctor=${encodeURIComponent(doctorName)}`);
+    navigate(`/request-appointment?doctor=${encodeURIComponent(doctorName)}`, {
+      state: { autoOpenCalendar: true }
+    });
   };
+  if (!filteredDoctors.length) return null;
 
   return (
     <section id="doctor-profiles" className="content-section" style={{ display: filteredDoctors.length ? 'block' : 'none' }}>

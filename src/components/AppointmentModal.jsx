@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-function AppointmentModal({ isOpen, onClose, autoOpenSlots, doctorName, specialty }) {
+function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, doctorName, specialty }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const [step, setStep] = useState('calendar');
+  const [step, setStep] = useState(autoOpenCalendar ? 'calendar' : 'calendar');
   const availableSlots = ["10:00AM", "11:00AM", "12:00PM", "03:00PM", "04:00PM"];
 
   useEffect(() => {
@@ -12,11 +12,15 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, doctorName, specialt
       setSelectedDate(today);
       setStep('slots');
     }
-  }, [autoOpenSlots, isOpen]);
+    if (autoOpenCalendar && isOpen) {
+      setStep('calendar');
+    }
+
+  }, [autoOpenSlots, autoOpenCalendar, isOpen]);;
 
   const generateCalendar = () => {
     const today = new Date();
-    const days = [];
+    const days = [];  
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
@@ -32,6 +36,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, doctorName, specialt
 
   const handleSlotSelect = (slot) => {
     setSelectedSlot(slot);
+   
   };
 
   const handleNext = () => {
@@ -49,7 +54,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, doctorName, specialt
       mobile: formData.get('mobile'),
     };
 
-    const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', {
+    const formattedDate = new Date(selectedDate).toLocaleDateString('en-IN', {
       weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
     });
 

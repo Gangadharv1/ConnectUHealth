@@ -7,8 +7,9 @@
     box-sizing: border-box;
 }
 
+
 #root {
-    height: 100vh;
+
     display: flex;
     flex-direction: column;
 }
@@ -18,6 +19,7 @@ body {
     line-height: 1.6;
     background: black;  
     color: #fff;
+    margin: 0;
 }
 
 .container {
@@ -64,13 +66,15 @@ nav ul li a:hover {
 main {
     flex: 1;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 #hero {
     margin: 0; 
     padding: 0;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     height: 100vh; 
     width: 100vw;
     background-image: url('/images/banner.jpg'); 
@@ -97,6 +101,7 @@ main {
 #hero h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .animated-text {
@@ -151,7 +156,7 @@ main {
 
 .content-section {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     height: auto; 
     background: linear-gradient(360deg, #000000, #102e66e5); 
     display: flex; 
@@ -163,14 +168,17 @@ main {
     border-radius: 8px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 40px 20px;
+    color: #fff;
 }
 
 .content-section h2 {
     margin-bottom: 10px; 
+    color: #fff;
 }
 
 .content-section p {
     line-height: 1.5; 
+    color: #fff;
 }
 
 #departments {
@@ -181,6 +189,8 @@ main {
     background-color: rgba(250, 250, 250, 0.1); 
     border-radius: 8px; 
     transition: transform 0.3s ease;
+    padding: 20px;
+    margin: 0;
 }
 
 .department-info {
@@ -231,14 +241,7 @@ main {
     transform: scale(1.05); 
 }
 
-#about-us {
-    border-radius: 5px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-    padding: 40px; 
-    margin: 20px 0; 
-    text-align: center; 
-    background-color: rgba(255, 255, 255, 0.1); 
-}
+
 
 #about-us {
     border-radius: 5px;
@@ -279,6 +282,32 @@ main {
     max-width: 800px;
     margin: 0 auto;
   }
+
+.doctor-profiles {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out;
+    height: auto;
+    min-height: auto; 
+}
+  
+.doctor-profiles.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+.doctor-profiles.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    display: none;  
+}
+  
+.profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
 
 .profile-card {
     background-color: rgba(250, 250, 250, 0.1); 
@@ -332,7 +361,10 @@ main {
 .dropdown-container {
     display: flex;
     align-items: center;
+    min-height: auto; 
+  height: auto;
 }
+
 
 .dropdown-container span {
     margin: 0px 10px;
@@ -373,6 +405,10 @@ select {
     background-image: url('/images/poster.jpg');
 }
 
+.modal.visible {
+    display: flex;
+  }
+
 .modal-content {
     background: linear-gradient(360deg, #000000, #102e66e5); 
     padding: 20px;
@@ -382,6 +418,7 @@ select {
     border-radius: 8px;
     color: #fff;
     position: relative;
+    transition: all 0.3s ease-in-out;
 }
 
 .close {
@@ -412,6 +449,7 @@ select {
     cursor: pointer;
     border: 1px solid #ccc;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .calendar-day:hover {
@@ -426,6 +464,7 @@ select {
 /* Time Slots Styles */
 #slot-container {
     padding: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 #slot-container h3 {
@@ -445,6 +484,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .time-slot:hover {
@@ -456,7 +496,11 @@ select {
     color: white;
 }
 
-/* Form Styles */
+
+#patient-form {
+    transition: all 0.3s ease-in-out; 
+  }
+  
 #patient-form input {
     width: 100%;
     padding: 10px;
@@ -474,6 +518,7 @@ select {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 #next-btn:hover, 

@@ -12,6 +12,7 @@ function RequestAppointment() {
   const [selectedDoctor, setSelectedDoctor] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [autoOpenSlots, setAutoOpenSlots] = useState(false);
+  const [autoOpenCalendar, setAutoOpenCalendar] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -22,8 +23,12 @@ function RequestAppointment() {
       setSelectedDoctor(doctor);
       setIsModalOpen(true);
       setAutoOpenSlots(true);
+      if (location.state?.autoOpenCalendar) {
+        setAutoOpenCalendar(true);
+      }
     }
-  }, [location.search]);
+    
+  }, [location.search, location.state]);
 
   const specialties = [
     'Cardiology', 'Neurology', 'Orthopedics', 'Nephrology', 'Gynecology',

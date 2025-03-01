@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Departments from '../components/Departments';
@@ -7,20 +8,29 @@ import AboutUs from '../components/AboutUs';
 import Footer from '../components/Footer';
 
 function Home() {
+  const location = useLocation();
   const [selectedDepartment, setSelectedDepartment] = useState(null);
-  const [showAllDoctors, setShowAllDoctors] = useState(false);
   const [isAboutUsVisible, setIsAboutUsVisible] = useState(false);
 
-
-  const toggleAboutUs = (e) => {
-    e.preventDefault(); 
-    setIsAboutUsVisible((prev) => !prev);
-    if (!isAboutUsVisible) {
-      setTimeout(() => {
-        document.getElementById('about-us').scrollIntoView({ behavior: 'smooth' });
-      }, 100); 
+  useEffect(() => {
+    if (location.state?.scrollToDepartments) {
+      const departmentsSection = document.getElementById('departments');
+      if (departmentsSection) {
+        departmentsSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
-  };
+
+    if (location.state?.scrollToAboutUs) {
+      console.log("Scrolling to AboutUs and making visible");
+      setIsAboutUsVisible(true);
+      const aboutUsSection = document.getElementById('about-us');
+      if (aboutUsSection) {
+        aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.log("AboutUs section not found");
+      }
+    }
+  }, [location.state]);
 
   return (
     <>
@@ -28,11 +38,8 @@ function Home() {
       <main>
         <Hero />
         <Departments setSelectedDepartment={setSelectedDepartment} />
-        <DoctorProfiles 
-          selectedDepartment={selectedDepartment} 
-          showAll={showAllDoctors}
-        />
-       <AboutUs isVisible={isAboutUsVisible} />
+        <DoctorProfiles selectedDepartment={selectedDepartment} showAll={false} />
+        <AboutUs className={isAboutUsVisible ? 'visible' : 'hidden'} />
       </main>
       <Footer />
     </>
