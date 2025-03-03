@@ -8,9 +8,9 @@ function Departments({ setSelectedDepartment }) {
     { id: 'Orthopedics', name: 'Orthopedics', img: '/images/orthopedics.png' },
     { id: 'Nephrology', name: 'Nephrology', img: '/images/nephrology.png' },
     { id: 'Gynecology', name: 'Gynecology', img: '/images/gynecology.png' },
-    { id: 'General_surgery', name: 'General Surgery', img: '/images/general_surgery.png' },
+    { id: 'Surgery', name: 'General Surgery', img: '/images/general_surgery.png' },
     { id: 'Medicine', name: 'Medicine', img: '/images/general_medicine.png' },
-    { id: 'Cancer_care', name: 'Cancer Care', img: '/images/cancer_care.png' },
+    { id: 'Care', name: 'Cancer Care', img: '/images/cancer_care.png' },
     { id: 'Gastrology', name: 'Gastrology', img: '/images/gastro.png' },
   ];
 

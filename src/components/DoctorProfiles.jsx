@@ -8,9 +8,9 @@ function DoctorProfiles({ selectedDepartment, showAll }) {
     { id: 'Orthopedics', name: 'Dr. Sanket', specialty: 'Orthopedics', img: '/images/orthopedics_doctor.jpg' },
     { id: 'Nephrology', name: 'Dr. Suman', specialty: 'Nephrology', img: '/images/nephrology_doctor.jpg' },
     { id: 'Gynecology', name: 'Dr. Sara', specialty: 'Gynecology', img: '/images/gynecology_doctor.jpg' },
-    { id: 'General_surgery', name: 'Dr. Dharaam', specialty: 'General Surgery', img: '/images/general_surgery_doctor.jpg' },
+    { id: 'Surgery', name: 'Dr. Dharam', specialty: 'General Surgery', img: '/images/general_surgery_doctor.jpg' },
     { id: 'Medicine', name: 'Dr. Prapul', specialty: 'General Medicine', img: '/images/general_medicine_doctor.jpg' },
-    { id: 'Cancer_care', name: 'Dr. Pradeep', specialty: 'Cancer Care', img: '/images/cancer_care_doctor.jpg' },
+    { id: 'Care', name: 'Dr. Pradeep', specialty: 'Cancer Care', img: '/images/cancer_care_doctor.jpg' },
     { id: 'Gastrology', name: 'Dr. Sushanth', specialty: 'Gastrology', img: '/images/gastroenterology_doctor.jpg' },
   ];
 

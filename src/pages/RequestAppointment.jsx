@@ -58,9 +58,9 @@ function RequestAppointment() {
     'Orthopedics': 'Orthopedics',
     'Nephrology': 'Nephrology',
     'Gynecology': 'Gynecology',
-    'General Surgery': 'General_surgery',
+    'General Surgery': 'Surgery',
     'Medicine': 'Medicine',
-    'Cancer Care': 'Cancer_care',
+    'Cancer Care': 'Care',
     'Gastrology': 'Gastrology'
   };
 

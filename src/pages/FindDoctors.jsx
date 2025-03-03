@@ -8,7 +8,10 @@ function FindDoctors() {
 
   useEffect(() => {
     console.log("FindDoctors rendered");
-    setTimeout(() => setIsVisible(true), 100);
+    setTimeout(() => {
+      setIsVisible(true);
+      console.log("FindDoctors isVisible set to true");
+    }, 100);
   }, []);
 
   return (
