@@ -12,6 +12,7 @@ function RequestAppointment() {
   const [selectedDoctor, setSelectedDoctor] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [autoOpenSlots, setAutoOpenSlots] = useState(false);
+  
   const [autoOpenCalendar, setAutoOpenCalendar] = useState(false);
 
   useEffect(() => {
