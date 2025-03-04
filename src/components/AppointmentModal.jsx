@@ -4,6 +4,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [step, setStep] = useState(autoOpenCalendar ? 'calendar' : 'calendar');
+  const [errors, setErrors] = useState({ fullName: '', mobile: '' });
   const availableSlots = ["10:00AM", "11:00AM", "12:00PM", "03:00PM", "04:00PM"];
 
   useEffect(() => {
@@ -36,6 +37,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
 
   const handleSlotSelect = (slot) => {
     setSelectedSlot(slot);
+    setStep('form');
    
   };
 
@@ -43,9 +45,37 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
     if (selectedSlot) setStep('form');
   };
 
+  const validateForm = (formData) => {
+    const fullName = formData.get('fullName');
+    const mobile = formData.get('mobile');
+    const newErrors = { fullName: '', mobile: '' };
+    let isValid = true;
+
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+    if (!nameRegex.test(fullName)) {
+      newErrors.fullName = 'Name should only contain letters and spaces';
+      isValid = false;
+    }
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(mobile)) {
+      newErrors.mobile = 'Mobile number must be exactly 10 digits';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
+    if (!validateForm(formData)) {
+      return;
+    }
+
     const booking = {
       date: selectedDate,
       time: selectedSlot,
@@ -71,6 +101,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
     setSelectedDate(null);
     setSelectedSlot(null);
     setStep('calendar');
+    setErrors({ fullName: '', mobile: '' });
   };
 
   if (!isOpen) return null;
@@ -113,9 +144,17 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
         )}
         {step === 'form' && (
           <form id="patient-form" onSubmit={handleSubmit}>
-            <input type="text" name="fullName" placeholder="Full Name" required />
-            <input type="number" name="age" placeholder="Age" required />
-            <input type="tel" name="mobile" placeholder="Mobile" required />
+            <div>
+              <input type="text" name="fullName" placeholder="Full Name" required />
+              {errors.fullName && <p style={{ color: 'red', fontSize: '12px' }}>{errors.fullName}</p>}
+            </div>
+            <div>
+              <input type="number" name="age" placeholder="Age" required />
+            </div>
+            <div>
+              <input type="tel" name="mobile" placeholder="Mobile" required />
+              {errors.mobile && <p style={{ color: 'red', fontSize: '12px' }}>{errors.mobile}</p>}
+            </div>
             <button type="submit">Book Appointment</button>
           </form>
         )}

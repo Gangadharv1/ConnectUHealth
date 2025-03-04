@@ -498,9 +498,16 @@ select {
 
 
 #patient-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     transition: all 0.3s ease-in-out; 
-  }
+}
   
+#patient-form div {
+    display: flex;
+    flex-direction: column;
+}
 #patient-form input {
     width: 100%;
     padding: 10px;
