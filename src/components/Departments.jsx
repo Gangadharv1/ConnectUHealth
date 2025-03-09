@@ -16,6 +16,10 @@ function Departments({ setSelectedDepartment }) {
 
   const handleDepartmentClick = (deptId) => {
     setSelectedDepartment(deptId);
+    const doctorProfilesSection = document.getElementById('doctor-profiles');
+    if (doctorProfilesSection) {
+      doctorProfilesSection.scrollIntoView({ behavior: 'smooth' });
+    }
     navigate('/#doctor-profiles');
   };
 
