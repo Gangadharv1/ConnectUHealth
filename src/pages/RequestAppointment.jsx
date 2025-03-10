@@ -75,6 +75,12 @@ function RequestAppointment() {
     setSelectedSpecialty('');
   };
 
+  const handleBookAppointment = () => {
+    if (selectedDoctor || selectedSpecialty) {
+      setIsModalOpen(true);
+    }
+  };
+
   const selectedDoctorSpecialty = selectedDoctor ? doctorProfileMap[selectedDoctor] : '';
 
   return (
@@ -103,11 +109,18 @@ function RequestAppointment() {
                 ))}
               </select>
             </div>
+            <button 
+              onClick={handleBookAppointment}
+              disabled={!selectedDoctor && !selectedSpecialty}
+            >
+              
+            </button>
           </div>
         </section>
         <DoctorProfiles 
           selectedDepartment={selectedSpecialty ? specialtyMap[selectedSpecialty] : doctorProfileMap[selectedDoctor]}
           showAll={false}
+          onBookAppointment={handleBookAppointment}
         />
         <AppointmentModal 
           isOpen={isModalOpen} 

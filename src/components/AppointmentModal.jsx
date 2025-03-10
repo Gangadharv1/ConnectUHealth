@@ -1,48 +1,41 @@
 import { useState, useEffect } from 'react';
 
-function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, doctorName, specialty }) {
+function AppointmentModal({ isOpen, onClose, doctorName, specialty }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const [step, setStep] = useState(autoOpenCalendar ? 'calendar' : 'calendar');
+  const [step, setStep] = useState('calendar');
   const [errors, setErrors] = useState({ fullName: '', mobile: '' });
   const availableSlots = ["10:00AM", "11:00AM", "12:00PM", "03:00PM", "04:00PM"];
 
-  useEffect(() => {
-    if (autoOpenSlots && isOpen) {
-      const today = new Date().toISOString().split("T")[0];
-      setSelectedDate(today);
-      setStep('slots');
-    }
-    if (autoOpenCalendar && isOpen) {
-      setStep('calendar');
-    }
-
-  }, [autoOpenSlots, autoOpenCalendar, isOpen]);;
-
   const generateCalendar = () => {
     const today = new Date();
-    const days = [];  
-    for (let i = 0; i < 7; i++) {
+    const days = [];
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    
+    // Generate 30 days from today
+    for (let i = 0; i < 30; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      days.push(date);
+      days.push({
+        date: date.toISOString().split("T")[0],
+        day: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear(),
+        weekday: date.toLocaleDateString("en-US", { weekday: "long" })
+      });
     }
     return days;
   };
 
   const handleDateSelect = (date) => {
-    setSelectedDate(date.toISOString().split("T")[0]);
+    setSelectedDate(date);
     setStep('slots');
   };
 
   const handleSlotSelect = (slot) => {
     setSelectedSlot(slot);
     setStep('form');
-   
-  };
-
-  const handleNext = () => {
-    if (selectedSlot) setStep('form');
   };
 
   const validateForm = (formData) => {
@@ -50,7 +43,6 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
     const mobile = formData.get('mobile');
     const newErrors = { fullName: '', mobile: '' };
     let isValid = true;
-
 
     const nameRegex = /^[A-Za-z\s]+$/;
     if (!nameRegex.test(fullName)) {
@@ -66,7 +58,6 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
     setErrors(newErrors);
     return isValid;
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,12 +79,11 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
       weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
     });
 
-   
     alert(
       `Dear ${booking.fullName}, your appointment is confirmed with ${doctorName}, ${specialty}, on ${formattedDate} at ${booking.time} at ConnectUHealth.`
     );
 
-    console.log(booking); 
+    console.log(booking);
     onClose();
   };
 
@@ -104,6 +94,12 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
     setErrors({ fullName: '', mobile: '' });
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      resetBooking();
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -112,20 +108,25 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
         <span className="close" onClick={onClose}>×</span>
         {step === 'calendar' && (
           <div id="calendar">
-            {generateCalendar().map((date, index) => (
-              <div
-                key={index}
-                className={`calendar-day ${selectedDate === date.toISOString().split("T")[0] ? 'selected' : ''}`}
-                onClick={() => handleDateSelect(date)}
-              >
-                {date.toLocaleDateString("en-US", { weekday: "short", day: "numeric" })}
-              </div>
-            ))}
+            <h3>Select Date</h3>
+            <div className="calendar-grid">
+              {generateCalendar().map((day, index) => (
+                <div
+                  key={index}
+                  className={`calendar-day ${selectedDate === day.date ? 'selected' : ''}`}
+                  onClick={() => handleDateSelect(day.date)}
+                >
+                  <div>{day.weekday.substring(0, 3)}</div>
+                  <div>{day.day}</div>
+                  <div>{new Date(day.date).toLocaleString('default', { month: 'short' })}</div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
         {step === 'slots' && (
           <div id="slot-container">
-            <h3>Select Time Slot</h3>
+            <h3>Select Time Slot for {new Date(selectedDate).toLocaleDateString()}</h3>
             <div id="time-slots">
               {availableSlots.map(slot => (
                 <div
@@ -137,13 +138,12 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
                 </div>
               ))}
             </div>
-            <button id="next-btn" onClick={handleNext} disabled={!selectedSlot}>
-              Next
-            </button>
+            <button onClick={() => setStep('calendar')}>Back</button>
           </div>
         )}
         {step === 'form' && (
           <form id="patient-form" onSubmit={handleSubmit}>
+            <h3>Patient Details</h3>
             <div>
               <input type="text" name="fullName" placeholder="Full Name" required />
               {errors.fullName && <p style={{ color: 'red', fontSize: '12px' }}>{errors.fullName}</p>}
@@ -155,6 +155,7 @@ function AppointmentModal({ isOpen, onClose, autoOpenSlots, autoOpenCalendar, do
               <input type="tel" name="mobile" placeholder="Mobile" required />
               {errors.mobile && <p style={{ color: 'red', fontSize: '12px' }}>{errors.mobile}</p>}
             </div>
+            <button type="button" onClick={() => setStep('slots')}>Back</button>
             <button type="submit">Book Appointment</button>
           </form>
         )}
