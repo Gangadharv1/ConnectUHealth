@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 function Departments({ setSelectedDepartment }) {
   const navigate = useNavigate();
+  const departmentRef = useRef(null);
+
   const departments = [
     { id: 'Cardiology', name: 'Cardiology', img: '/images/cardiology.png' },
     { id: 'Neurology', name: 'Neurology', img: '/images/neurology.png' },
@@ -13,7 +16,7 @@ function Departments({ setSelectedDepartment }) {
     { id: 'Care', name: 'Cancer Care', img: '/images/cancer_care.png' },
     { id: 'Gastrology', name: 'Gastrology', img: '/images/gastro.png' },
   ];
-
+  
   const handleDepartmentClick = (deptId) => {
     setSelectedDepartment(deptId);
     const doctorProfilesSection = document.getElementById('doctor-profiles');
@@ -24,7 +27,7 @@ function Departments({ setSelectedDepartment }) {
   };
 
   return (
-    <section id="departments" className="content-section">
+    <section id="departments" className="content-section" ref={departmentRef}>
       <div className="department-info">
         <h2>Centres Of Excellence</h2>
         <p>Explore our various departments to find the care you need.</p>
