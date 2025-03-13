@@ -4,7 +4,7 @@ function DoctorProfiles({ selectedDepartment, showAll }) {
   const navigate = useNavigate();
   const doctors = [
     { id: 'Cardiology', name: 'Dr. Deepak', specialty: 'Cardiology', img: '/images/cardiology_doctor.jpg' },
-    { id: 'Neurology', name: 'Dr. Ravi Kumar', specialty: 'Neurology', img: '/images/neurology_doctor.jpg' },
+    { id: 'Neurology', name: 'Dr. Ravi ', specialty: 'Neurology', img: '/images/neurology_doctor.jpg' },
     { id: 'Orthopedics', name: 'Dr. Sanket', specialty: 'Orthopedics', img: '/images/orthopedics_doctor.jpg' },
     { id: 'Nephrology', name: 'Dr. Suman', specialty: 'Nephrology', img: '/images/nephrology_doctor.jpg' },
     { id: 'Gynecology', name: 'Dr. Sara', specialty: 'Gynecology', img: '/images/gynecology_doctor.jpg' },

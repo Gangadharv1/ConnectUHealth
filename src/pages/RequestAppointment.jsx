@@ -37,13 +37,13 @@ function RequestAppointment() {
   ];
 
   const doctors = [
-    'Dr. Deepak', 'Dr. Ravi Kumar', 'Dr. Sanket', 'Dr. Suman', 'Dr. Sara',
+    'Dr. Deepak', 'Dr. Ravi ', 'Dr. Sanket', 'Dr. Suman', 'Dr. Sara',
     'Dr. Dharam', 'Dr. Prapul', 'Dr. Pradeep', 'Dr. Sushanth'
   ];
 
   const doctorProfileMap = {
     'Dr. Deepak': 'Cardiology',
-    'Dr. Ravi Kumar': 'Neurology',
+    'Dr. Ravi ': 'Neurology',
     'Dr. Sanket': 'Orthopedics',
     'Dr. Suman': 'Nephrology',
     'Dr. Sara': 'Gynecology',
