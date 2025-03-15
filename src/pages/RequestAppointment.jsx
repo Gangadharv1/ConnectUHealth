@@ -84,7 +84,7 @@ function RequestAppointment() {
   const selectedDoctorSpecialty = selectedDoctor ? doctorProfileMap[selectedDoctor] : '';
 
   return (
-    <>
+    <div className="page-container">
       <Header />
       <main>
         <section id="appointment-dropdown" className="content-section">
@@ -135,7 +135,7 @@ function RequestAppointment() {
         />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
