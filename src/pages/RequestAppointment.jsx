@@ -91,7 +91,7 @@ function RequestAppointment() {
           <h2>Request an Appointment</h2>
           <div className="dropdown-container">
             <div className="dropdown">
-              <label htmlFor="specialty">Specialty:</label>
+              <label htmlFor="specialty">Specialty</label>
               <select id="specialty" value={selectedSpecialty} onChange={handleSpecialtyChange}>
                 <option value="">Select Specialty</option>
                 {specialties.map(spec => (
@@ -101,7 +101,7 @@ function RequestAppointment() {
             </div>
             <span>OR</span>
             <div className="dropdown">
-              <label htmlFor="doctor">Doctor:</label>
+              <label htmlFor="doctor">Doctor</label>
               <select id="doctor" value={selectedDoctor} onChange={handleDoctorChange}>
                 <option value="">Select Doctor</option>
                 {doctors.map(doc => (

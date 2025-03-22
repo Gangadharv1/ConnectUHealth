@@ -5,6 +5,26 @@ function Departments({ setSelectedDepartment }) {
   const navigate = useNavigate();
   const departmentRef = useRef(null);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (departmentRef.current) {
+        const element = departmentRef.current;
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+        
+        if (isVisible) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const departments = [
     { id: 'Cardiology', name: 'Cardiology', img: '/images/cardiology.png' },
     { id: 'Neurology', name: 'Neurology', img: '/images/neurology.png' },
