@@ -641,7 +641,11 @@ select {
     overflow-y: auto;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .time-slots-title {
@@ -669,6 +673,10 @@ select {
     transition: all 0.3s ease;
     color: #fff;
     font-size: 25px;
+    width: 100%;
+    display: inline;
+    
+    
 }
 
 .time-slot:hover {
