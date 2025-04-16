@@ -5,6 +5,69 @@ function Calendar() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
+  const styles = {
+    calendarDay: {
+      padding: '15px',
+      textAlign: 'center',
+      cursor: 'pointer',
+      fontSize: '1.2rem',
+      fontWeight: 'bold',
+      transition: 'all 0.3s ease',
+    },
+    selected: {
+      backgroundColor: '#4CAF50',
+      color: 'white',
+      borderRadius: '50%',
+    },
+    today: {
+      border: '2px solid #4CAF50',
+      borderRadius: '50%',
+    },
+    empty: {
+      padding: '15px',
+    },
+    calendarContainer: {
+      maxWidth: '600px',
+      margin: '0 auto',
+      fontFamily: 'Arial, sans-serif',
+    },
+    calendarHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '20px',
+    },
+    calendarGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(7, 1fr)',
+      gap: '5px',
+    },
+    weekday: {
+      textAlign: 'center',
+      padding: '10px',
+      fontWeight: 'bold',
+    },
+    timeSlotsContainer: {
+      marginTop: '20px',
+    },
+    timeSlotsTitle: {
+      marginBottom: '10px',
+      fontSize: '1.1rem',
+    },
+    timeSlotsGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: '10px',
+    },
+    timeSlot: {
+      padding: '10px',
+      textAlign: 'center',
+      border: '1px solid #ddd',
+      borderRadius: '5px',
+      cursor: 'pointer',
+    },
+  };
+
   const handlePrevMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
   };
@@ -23,7 +86,7 @@ function Calendar() {
     // Add empty cells for days before the first day of month
     for (let i = 0; i < firstDay; i++) {
       days.push(
-        <div key={`empty-${i}`} className="calendar-day empty"></div>
+        <div key={`empty-${i}`} style={styles.empty}></div>
       );
     }
 
@@ -37,11 +100,17 @@ function Calendar() {
       
       const isToday = new Date().toDateString() === date.toDateString();
 
+      const dayStyle = {
+        ...styles.calendarDay,
+        ...(isSelected ? styles.selected : {}),
+        ...(isToday ? styles.today : {})
+      };
+
       days.push(
         <div 
           key={day}
           onClick={() => handleDateClick(date)}
-          className={`calendar-day ${isSelected ? 'selected' : ''} ${isToday ? 'today' : ''}`}
+          style={dayStyle}
         >
           {day}
         </div>
@@ -97,20 +166,20 @@ function Calendar() {
   };
 
   return (
-    <div className="calendar-container">
-      <div className="calendar-header">
+    <div style={styles.calendarContainer}>
+      <div style={styles.calendarHeader}>
         <button onClick={handlePrevMonth}>&lt;</button>
         <h2>
           {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
         </h2>
         <button onClick={handleNextMonth}>&gt;</button>
       </div>
-      <div className="calendar-weekdays">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="weekday">{day}</div>
+          <div key={day} style={styles.weekday}>{day}</div>
         ))}
       </div>
-      <div className="calendar-grid">
+      <div style={styles.calendarGrid}>
         {renderCalendar()}
       </div>
       {renderTimeSlots()}
