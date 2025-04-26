@@ -5,7 +5,7 @@ function AppointmentModal({ isOpen, onClose, doctorName, specialty }) {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [step, setStep] = useState('calendar');
   const [errors, setErrors] = useState({ fullName: '', mobile: '' });
-  const availableSlots = ["10:00AM", "11:00AM", "12:00PM", "03:00PM", "04:00PM"];
+  const availableSlots = ["10:00AM", "11:00AM", "12:00PM", "03:00PM", "04:00PM" ,"05:00PM"];
 
   const generateCalendar = () => {
     const today = new Date();
