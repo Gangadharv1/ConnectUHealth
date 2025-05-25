@@ -107,6 +107,22 @@ main {
     color: #fff;
 }
 
+#hero h1 .connectu {
+    background: linear-gradient(190deg, #f9f8f9cf, #16a4cb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+#hero h1 .health {
+    background: linear-gradient(139deg, #0eb4d5, #fefffe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
 .animated-text {
     opacity: 0; 
     transform: translateY(20px); 

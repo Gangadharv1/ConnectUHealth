@@ -32,7 +32,9 @@ function Hero() {
   return (
     <section id="hero" ref={heroRef}>
       <div className="hero-content">
-        <h1 className="animated-text">Welcome to ConnectUhealth</h1>
+        <h1 className="animated-text">
+          Welcome to <span className="connectu">ConnectU</span><span className="health">Health</span>
+        </h1>
         <p>Experience seamless healthcare access with our dynamic platform.</p>
         <div className="box-container">
         <div className="box request-appointment-link" onClick={handleRequestAppointmentClick}>
